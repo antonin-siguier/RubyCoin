@@ -7,7 +7,7 @@ gem 'inesita-router', '~> 0.2.0'
 
 # templates gems
 gem 'slim'
-gem 'scss'
+gem 'sass'
 
 # minification gems
 # gem 'uglifier'

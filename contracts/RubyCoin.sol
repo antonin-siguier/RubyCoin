@@ -22,20 +22,22 @@ contract RubyCoin is Ownable {
   constructor(
     string _version
   ) Ownable() public {
-    // Do Something here!
+    version = _version;
+    name = "RubyCoin";
+    symbol = "RBC";
+    decimals = 0;
+    balances[msg.sender] = 1e9;
   }
 
   /// @dev Returns the total supply of existing token.
   function totalSupply() public pure returns (uint) {
-    // Do Something here!
-    return 0;
+    return 1e9;
   }
 
   /// @dev Returns the balance of tokens of someone.
   /// @param _owner The person you want to check balance.
   function balanceOf(address _owner) public view returns (uint) {
-    // Do Something here!
-    return 0;
+    return balances[_owner];
   }
 
   /// @dev Transfer some token to someone else. Should revert if not enough funds. Emit Transfer when done.
@@ -43,8 +45,10 @@ contract RubyCoin is Ownable {
   /// @param _value The amount to transfer.
   /// @return True if transfer is successfull, False otherwise.
   function transfer(address _to, uint _value) public returns (bool success) {
-    // Do Something here!
-    return false;
+    require(balances[msg.sender] >= _value);
+    balances[msg.sender] -= _value;
+    balances[_to] += _value;
+    return true;
   }
 
   /// @dev Approve a third party to withdraw a certain amount of tokens for the owner. Emit Approval when done.
